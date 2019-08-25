@@ -16,8 +16,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .box {
-  width: 750px;
-  height: 100px;
   background-color: red;
+}
+button {
+  position: relative;
+  bottom: 20px;
 }
 </style>

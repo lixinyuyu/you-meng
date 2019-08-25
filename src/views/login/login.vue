@@ -28,7 +28,7 @@
       </van-button>
       </van-field>
     </van-cell-group>
-    <van-button type="primary" :color="color" :loading = "loading" style="font-size:13px" @click="handleLogin">登录</van-button>
+    <van-button type="primary" :color="color"  style="font-size:13px" @click="handleLogin">登录</van-button>
   </div>
 </template>
 
@@ -40,8 +40,7 @@ export default {
     return {
       mobile: '',
       code: '',
-      icon: true,
-      loading: false
+      icon: true
     }
   },
   computed: {
@@ -51,7 +50,11 @@ export default {
   },
   methods: {
     handleLogin () {
-      this.loading = true
+      this.$toast.loading({
+        mask: false,
+        message: '加载中...',
+        forbidClick: true
+      })
       login({ mobile: this.mobile, code: this.code })
         .then(data => {
         /*
@@ -59,9 +62,11 @@ export default {
         1.将返回的token信息存储到本地存储中去
         2.跳转路由，跳转到首页
         */
-          console.log(data)
-          window.localStorage.setItem('user', JSON.stringify(data))
-          this.loading = false
+          this.$toast.clear()
+          this.$store.commit('setUser', data)
+          this.$router.push({
+            name: 'home'
+          })
         })
     }
   }

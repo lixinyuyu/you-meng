@@ -1,16 +1,30 @@
 <template>
-  <div>
-    home
-    <van-button type="default">默认按钮</van-button>
-    <van-button type="primary">主要按钮</van-button>
-    <div class="box">111</div>
+  <div style="padding: 0 15px">
+    <!-- 首页导航部分 -->
+    <van-nav-bar title="首页" fixed @click-left="show = !show">
+      <div slot="left" class="user-nav">
+        <!-- <img src=""> -->
+      </div>
+      <van-icon name="search" slot="right" />
+    </van-nav-bar>
+    <!-- 弹出层 -->
+    <van-popup
+      v-model="show"
+      round
+      position="left"
+      :style="{ height:'100%',width:'80%' }"
+    />
   </div>
 </template>
 <script>
 export default {
   name: 'Home',
   data () {
-    return {}
+    return {
+      show: false
+    }
+  },
+  methods: {
   }
 }
 </script>
@@ -21,5 +35,11 @@ export default {
 button {
   position: relative;
   bottom: 20px;
+}
+.user-nav {
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background-color: red;
 }
 </style>

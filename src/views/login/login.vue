@@ -84,9 +84,9 @@ input:-internal-autofill-selected {
   padding-right: 0;
 }
 button {
-  width:100%;
-  height:65px;
-  line-height:65px;
-  margin-top: 30px;
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  margin-top: 120px;
 }
 </style>

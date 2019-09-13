@@ -10,7 +10,7 @@
     <div class="popup-bg">
       <div class="popup">
         <div class="user-photo">
-          <img :src="userInfo.photo">
+          <img :src="userInfo.photo" @click="isShow = true">
         </div>
         <div>
           <h5>{{userInfo.mobile}}</h5>
@@ -23,10 +23,12 @@
       <p>我不想裸漏，请为我增添衣服</p>
     </div>
     </van-popup>
+    <avator-dialog v-model="isShow" />
   </div>
 </template>
 
 <script>
+import avatorDialog from './avator-dialog'
 export default {
   props: {
     value: {
@@ -38,8 +40,13 @@ export default {
       default: () => {}
     }
   },
+  components: {
+    avatorDialog
+  },
   data () {
-    return {}
+    return {
+      isShow: false
+    }
   },
   methods: {
   }

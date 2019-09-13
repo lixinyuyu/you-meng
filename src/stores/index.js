@@ -4,7 +4,8 @@ import * as auth from '@/utils/auth.js'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    user: auth.getUser()
+    user: auth.getUser(),
+    userInfo: ''
   },
   mutations: {
     setUser (state, data) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
       */
       state.user = data
       auth.saveUser(state.user)
+    },
+    serUserInfo (state, data) {
+      state.userInfo = data
     }
   }
 })

@@ -11,7 +11,7 @@ module.exports = (data) => {
   // 如果是 node_modules/vant 相关文件，则将 rootValue 设置为 37.5，否则都设置为 75
   const rootValue = data.file.dirname.indexOf(`node_modules${path.sep}vant`) !== -1
     ? 37.5
-    : 75
+    : 37.5
 
   return {
     plugins: {

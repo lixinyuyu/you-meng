@@ -23,7 +23,7 @@
       <p>我不想裸漏，请为我增添衣服</p>
     </div>
     </van-popup>
-    <avator-dialog v-model="isShow" />
+    <avator-dialog v-model="isShow" @update-success="userInfo.photo = $event"/>
   </div>
 </template>
 

@@ -27,3 +27,14 @@ export const userChannel = () => {
     url: '/app/v1_0/user/channels'
   })
 }
+
+// 用户上传头像
+export const updateAvator = (name, file) => {
+  const formData = new FormData()
+  formData.append(name, file)
+  return request({
+    method: 'PATCH',
+    url: '/app/v1_0/user/photo',
+    data: formData
+  })
+}

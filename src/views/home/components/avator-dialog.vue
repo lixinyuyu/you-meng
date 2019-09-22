@@ -10,7 +10,6 @@
       <van-cell-group>
         <van-cell title="从相册选择" @click="$refs['file'].click()" />
         <input type="file"  id="fils" style="display: none" ref="file" @change="handleImgChange">
-        <van-cell title="单元格"  />
         <van-cell title="取消"  @click="$emit('input', false)"/>
       </van-cell-group>
     </van-dialog>

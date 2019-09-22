@@ -1,7 +1,14 @@
 <template>
   <div style="padding: 0px 15px;height:100%">
     <!-- 首页导航部分 -->
-    <van-nav-bar title="首页" fixed @click-left="isShow = true" :border="false" style="margin-bottom:50px">
+    <van-nav-bar
+      title="首页"
+      fixed
+      @click-left="isShow = true"
+      :border="false"
+      style="margin-bottom:50px"
+      @click-right="$router.push({name: 'search'})"
+    >
       <div slot="left" class="user-nav">
         <img :src="userInfo.photo">
       </div>
@@ -13,6 +20,8 @@
     <swiper/>
     <!-- 用户关注的频道列表部分 -->
     <userChannel />
+    <!-- layout部分 -->
+    <layout />
   </div>
 </template>
 <script>
@@ -20,12 +29,14 @@ import { user } from '@/api/user'
 import userPopup from './components/user-popup'
 import swiper from './components/swiper'
 import userChannel from './components/user-channel'
+import layout from './components/layout'
 export default {
   name: 'Home',
   components: {
     userPopup,
     swiper,
-    userChannel
+    userChannel,
+    layout
   },
   data () {
     return {

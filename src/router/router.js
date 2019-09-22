@@ -8,22 +8,24 @@ export default new Router({
       path: '/',
       name: 'home',
       component: () => import('@/views/home')
-    },
-    {
+    }, {
       path: '/first',
       name: 'first',
       component: () => import('@/views/login/index'),
       meta: {
         desc: '登陆或者注册页面'
       }
-    },
-    {
+    }, {
       path: '/login',
       name: 'login',
       component: () => import('@/views/login/login.vue'),
       meta: {
         desc: '登陆页面'
       }
+    }, {
+      path: '/search',
+      name: 'search',
+      component: () => import('@/views/search')
     }
   ]
 })

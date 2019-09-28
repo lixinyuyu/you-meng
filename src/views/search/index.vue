@@ -12,7 +12,10 @@
     </form>
     <van-cell-group v-if="searchText.length && options.length">
       <van-cell v-for="(item, index) in options" :key="index">
-          <div slot="title" v-html="handleHightLight(item, searchText)"></div>
+          <div slot="title"
+          v-html="handleHightLight(item, searchText)"
+          @click="onSearch(searchText)"
+          ></div>
           <!-- next 点击搜索内容跳转+搜索关键字跳转路由 -->
       </van-cell>
     </van-cell-group>
@@ -38,6 +41,12 @@ export default {
   },
   methods: {
     onSearch (keyword) {
+      this.$router.push({
+        name: 'searchContent',
+        params: {
+          q: keyword
+        }
+      })
     },
     handleHightLight (item, searchText) {
       return item.toLowerCase().split(searchText).join(`<span style="color: red">${searchText}</span>`)

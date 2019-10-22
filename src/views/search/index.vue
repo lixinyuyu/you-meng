@@ -1,20 +1,15 @@
 <template>
   <div>
-    <!-- search -->
-    <form action="/">
-      <van-search
-        v-model="searchText"
-        placeholder="请输入搜索关键词"
-        show-action
-        @search="onSearch(searchText)"
-        @cancel="$router.push({name: 'home'})"
-      />
-    </form>
-    <van-cell-group v-if="searchText.length && options.length">
+    <searchCommon
+      @search="handleTemp"
+      @getHight="searchText = $event"
+      @clear="handleclear"
+      ref="searchCo"/>
+    <van-cell-group >
       <van-cell v-for="(item, index) in options" :key="index">
           <div slot="title"
           v-html="handleHightLight(item, searchText)"
-          @click="onSearch(searchText)"
+          @click="onSearch(item)"
           ></div>
           <!-- next 点击搜索内容跳转+搜索关键字跳转路由 -->
       </van-cell>
@@ -26,12 +21,12 @@
 
 <script>
 import layout from './components/layout'
-import { searchData } from '@/api/search'
-import { debounce } from 'lodash'
+import searchCommon from '@/components/search/searchCommon.vue'
 export default {
   name: 'search',
   components: {
-    layout
+    layout,
+    searchCommon
   },
   data () {
     return {
@@ -40,28 +35,19 @@ export default {
     }
   },
   methods: {
+    handleTemp (event) {
+      this.options = event.options
+    },
     onSearch (keyword) {
-      this.$router.push({
-        name: 'searchContent',
-        params: {
-          q: keyword
-        }
-      })
+      this.$refs['searchCo'].onSearch(keyword)
     },
     handleHightLight (item, searchText) {
       return item.toLowerCase().split(searchText).join(`<span style="color: red">${searchText}</span>`)
+    },
+    handleclear () {
+      this.searchText = ''
+      this.options = []
     }
-  },
-  watch: {
-    searchText: debounce(function (text) {
-      if (!text.trim().length) {
-        return
-      }
-      searchData(text).then(data => {
-        this.options = data.options
-      })
-    }, 500)
-
   }
 }
 </script>

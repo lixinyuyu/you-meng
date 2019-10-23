@@ -48,11 +48,12 @@ export default {
       this.loadData()
     },
     loadData () {
-      searchResult({
+      var params = {
         page: this.page,
         perPage: this.perPage,
         q: this.q
-      }).then(res => {
+      }
+      searchResult(params).then(res => {
         this.searchList.push(...res.results)
         this.loading = false
         if (!res.results.length) {

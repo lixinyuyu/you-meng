@@ -1,15 +1,22 @@
 <template>
   <div>
-    my
+    <!-- 导航栏部分 -->
+    <navBar />
+    <!-- 头像和信息部分 -->
+    <userInfo />
     <layout />
   </div>
 </template>
 <script>
 import layout from './components/layout'
+import navBar from './components/navBar'
+import userInfo from './components/user-info'
 export default {
   name: 'my',
   components: {
-    layout
+    layout,
+    navBar,
+    userInfo
   },
   data () {
     return {

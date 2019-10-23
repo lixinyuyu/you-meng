@@ -36,7 +36,6 @@ request.interceptors.response.use(function (response) {
   信息保存到store中
 */
   const { user } = store.state
-  console.log('error', error)
   if (error.response.status === 401) {
     if (!user) {
       router.push({

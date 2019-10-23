@@ -20,7 +20,6 @@ export default {
   methods: {
     loadChannels () {
       userChannel().then(data => {
-        console.log(data)
         this.userChannels = data.channels
       })
     }

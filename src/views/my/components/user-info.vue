@@ -1,18 +1,33 @@
 <template>
   <div>
-    <div class="wrapper">
-      <div class="user-avatar">
-        <img :src="userInfos.photo" @click="handleShow">
-      </div>
-      <div class="user-infos">
-        <div>
-          {{ userName }}
-          <van-icon name="edit" class="icon"/>
+    <van-skeleton
+      title
+      avatar
+      :row="3"
+      :loading="userInfos ? false : true"
+    >
+      <div class="wrapper">
+        <div class="user-avatar">
+          <img :src="userInfos.photo" @click="$router.push(
+            {
+              name: 'userShow',
+              params:{
+                userName: userName,
+                userInfos: userInfos
+              }
+            })
+            ">
         </div>
-        <span style="font-size:12px;color:#ccc">{{userInfos.mobile}}</span>
-        <span style="font-size:13px;color:#ccc">{{userInfos.birthday || '写签名更容易获得关注'}}</span>
+        <div class="user-infos">
+          <div>
+            {{ userName }}
+            <van-icon name="edit" class="icon"/>
+          </div>
+          <span style="font-size:12px;color:#ccc">{{userInfos.mobile}}</span>
+          <span style="font-size:13px;color:#ccc">{{userInfos.birthday || '写签名更容易获得关注'}}</span>
+        </div>
       </div>
-    </div>
+    </van-skeleton>
   </div>
 </template>
 <script>
@@ -20,7 +35,8 @@ export default {
   name: 'userInfo',
   data () {
     return {
-      userName: 'lxxy'
+      userName: 'lxxy',
+      loading: true
     }
   },
   computed: {
@@ -30,7 +46,6 @@ export default {
   },
   methods: {
     handleShow () {
-
     }
   },
   created () {
@@ -40,7 +55,6 @@ export default {
 <style lang="less" scoped>
 .wrapper {
   display: flex;
-  padding: 0 15px;
   .user-avatar {
     img {
       width: 75px;

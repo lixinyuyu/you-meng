@@ -38,6 +38,10 @@ export default new Router({
       path: '/my',
       name: 'my',
       component: () => import('@/views/my')
+    }, {
+      path: '/userShow',
+      name: 'userShow',
+      component: () => import('@/components/user/user-show.vue')
     }
   ]
 })

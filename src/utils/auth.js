@@ -8,13 +8,13 @@
       设置user的时候，需要JSON.parse()
 */
 
-const USER_KEY = 'user'
-export const getUser = () => {
-  return JSON.parse(window.localStorage.getItem(USER_KEY))
+// const USER_KEY = 'user'
+export const getUser = (userKey) => {
+  return JSON.parse(window.localStorage.getItem(userKey))
 }
-export const saveUser = (data) => {
-  return window.localStorage.setItem(USER_KEY, JSON.stringify(data))
+export const saveUser = (userKey, data) => {
+  return window.localStorage.setItem(userKey, JSON.stringify(data))
 }
-export const removeUser = () => {
-  return window.localStorage.removeItem(USER_KEY)
+export const removeUser = (userKey) => {
+  return window.localStorage.removeItem(userKey)
 }

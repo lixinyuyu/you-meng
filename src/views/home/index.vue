@@ -48,6 +48,7 @@ export default {
     loadUser () {
       user().then(data => {
         this.userInfo = data
+        // window.localStorage.setItem('user_info', JSON.stringify(data))
         this.$store.commit('serUserInfo', data)
       })
     }

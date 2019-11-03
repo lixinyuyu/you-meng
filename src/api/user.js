@@ -38,3 +38,36 @@ export const updateAvator = (name, file) => {
     data: formData
   })
 }
+
+// 获取用户的关注
+export const userGet = (target) => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/followings',
+    data: {
+      target
+    }
+  })
+}
+
+// 获取用户的粉丝列表
+export const userFans = (target) => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/followers',
+    data: {
+      target
+    }
+  })
+}
+
+// 获取用户统计数据
+export const userData = (target) => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/figure',
+    data: {
+      target
+    }
+  })
+}

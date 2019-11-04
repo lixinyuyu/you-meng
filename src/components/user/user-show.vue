@@ -36,7 +36,6 @@ export default {
   data () {
     return {
       userName: 'lxxy',
-      cx: '',
       cy: '',
       ot: '',
       isImagPreview: false
@@ -54,22 +53,21 @@ export default {
     handleDown (event) {
       var touch
       touch = event.touches ? event.touches[0] : event
-      this.cx = touch.clientX
       this.cy = touch.clientY
       this.ot = document.querySelector('.no-infoTip').offsetTop
     },
     handleMove (event) {
       var touch
       touch = event.touches ? event.touches[0] : event
-      // var height = document.querySelector('.no-infoTip').style.height
       var H
-      // if(parseInt(document.querySelector('.no-infoTip').style.top) >= 200) {
-      // H = 200
-      // } else {
       H = touch.clientY - this.cy
-      // }
-      // console.log(document.querySelector('.no-infoTip').style.top)
-      document.querySelector('.no-infoTip').style.top = H + this.ot + 'px'
+      let noTip = document.querySelector('.no-infoTip')
+      noTip.style.top = H + this.ot + 'px'
+      if (parseInt(noTip.style.top) >= 200) {
+        noTip.style.top = 200 + 'px'
+      } else if (parseInt(noTip.style.top) <= 40) {
+        noTip.style.top = 40 + 'px'
+      }
     }
   },
   created () {

@@ -2,10 +2,13 @@
   <div>
     <!-- 导航栏部分 -->
     <navBar />
-    <!-- 头像和信息部分 -->
     <div style="padding: 0 15px">
+    <!-- 头像和信息部分 -->
       <userInfo />
+      <!-- 用户关注等情况 -->
       <infoNums />
+      <!-- 用户任务 -->
+      <infoTasks />
       <layout />
     </div>
   </div>
@@ -15,13 +18,15 @@ import layout from './components/layout'
 import navBar from './components/navBar'
 import userInfo from './components/user-info'
 import infoNums from './components/info-nums'
+import infoTasks from './components/user-tasks'
 export default {
   name: 'my',
   components: {
     layout,
     navBar,
     userInfo,
-    infoNums
+    infoNums,
+    infoTasks
   },
   data () {
     return {

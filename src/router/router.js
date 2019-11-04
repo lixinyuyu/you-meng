@@ -42,6 +42,10 @@ export default new Router({
       path: '/userShow',
       name: 'userShow',
       component: () => import('@/components/user/user-show.vue')
+    }, {
+      path: '/task',
+      name: 'task',
+      component: () => import('@/views/task/index')
     }
   ]
 })

@@ -65,6 +65,7 @@ export default {
 <style lang="less" scoped>
 .wrapper {
   margin-top: 20px;
+  overflow: hidden;
   li {
     float: left;
     width: 33%;

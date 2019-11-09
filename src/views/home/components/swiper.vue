@@ -23,7 +23,7 @@ export default {
 </script>
 <style scoped lang="less">
 .swiper-wrap {
-  margin-top: 70px;
+  padding-top: 70px;
   height: 190px;
   img {
     width: 100%;

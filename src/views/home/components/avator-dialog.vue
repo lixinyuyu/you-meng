@@ -5,6 +5,7 @@
       show-cancel-button
       :showConfirmButton = "false"
       :showCancelButton = "false"
+      :closeOnPopstate = "true"
       :overlay = "false"
     >
       <van-cell-group>
@@ -58,6 +59,7 @@ export default {
         this.updateImage()
       }).catch(() => {
         // on cancel
+        this.$emit('input', false)
       })
     },
     // 发送请求更新头像

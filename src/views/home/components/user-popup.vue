@@ -6,6 +6,7 @@
       round
       position="left"
       :style="{ height:'100%',width:'80%' }"
+      @close="isShow = false"
     >
     <div class="popup-bg">
       <div class="popup">

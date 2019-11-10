@@ -4,7 +4,7 @@
     <navBar />
     <div style="padding: 0 15px">
     <!-- 头像和信息部分 -->
-      <userInfo />
+      <userInfo style="margin-bottom: 10px"/>
       <!-- 用户关注等情况 -->
       <infoNums />
       <!-- 用户任务 -->

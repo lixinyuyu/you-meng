@@ -2,7 +2,7 @@
   <div id="tasks">
     <div class="header">
       <div class="header-navbar">
-        <van-icon name="arrow-left" color="#fff" class="icon1" />
+        <van-icon name="arrow-left" color="#fff" class="icon1" @click="$router.back()"/>
         <h6 class="userGrade">用户等级</h6>
         <span class="GrowUp">成长明细</span>
       </div>
@@ -21,12 +21,15 @@
         <span>距离升级还需要成长值: 430</span>
       </div>
     </div>
+    <tasks-day />
   </div>
 </template>
 <script>
+import tasksDay from './components/tasks-day'
 export default {
   name: 'task',
   components: {
+    tasksDay
   },
   data () {
     return {

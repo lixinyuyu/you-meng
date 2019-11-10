@@ -11,3 +11,6 @@ h5,
 h6 {
   margin: 0;
 }
+.self-mr-top {
+  margin-top: 5px;
+}

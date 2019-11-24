@@ -14,3 +14,15 @@ h6 {
 .self-mr-top {
   margin-top: 5px;
 }
+.self-mr-right {
+  margin-right: 7px;
+}
+.fz12 {
+  font-size: 12px;
+}
+.fz14 {
+  font-size: 14px;
+}
+.orangered {
+  color: orangered;
+}

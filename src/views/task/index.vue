@@ -17,7 +17,11 @@
           size="70px"
           class="text"
         />
-        <van-divider :style="{ padding: '0 60px' }">lv1</van-divider>
+        <div class="line-grade">
+          <div class="inline"></div>
+          lv1
+          <div class="inline"></div>
+        </div>
         <span>距离升级还需要成长值: 430</span>
       </div>
     </div>
@@ -52,7 +56,7 @@ export default {
   .header {
     background-color: #191616;
     color: #fff;
-    padding: 0 15px;
+    padding: 0 15px 10px 15px;
     .header-navbar {
       display: flex;
       padding-top: 10px;
@@ -79,6 +83,23 @@ export default {
       span {
         font-size: 12px;
       }
+    }
+    .line-grade {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25%;
+      font-size: 16px;
+      font-weight: 200;
+      margin-top: 8px;
+      .inline {
+        width: 40%;
+        height: 1px;
+        background-image: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,.1));
+      }
+    }
+    .line-grade .inline:nth-child(2) {
+      background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,.1));
     }
   }
 }

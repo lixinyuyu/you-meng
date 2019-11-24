@@ -46,6 +46,10 @@ export default new Router({
       path: '/task',
       name: 'task',
       component: () => import('@/views/task/index')
+    }, {
+      path: '/taskAll',
+      name: 'Alltask',
+      component: () => import('@/views/task/components/all-task.vue')
     }
   ]
 })

@@ -24,6 +24,27 @@ app.use('/task/data', function (req, res) {
   }))
 })
 
+// 手机型号数据
+app.use('/phone/data', (req, res) => {
+  res.json(Mock.mock({
+    'data': [
+      {
+        'color': '红色',
+        'price': '@integer(5000,6000)',
+        'name': 'iphone11'
+      }, {
+        'color': '蓝色',
+        'price': '@integer(5000,6000)',
+        'name': 'iphone12'
+      }, {
+        'color': '绿色',
+        'price': '@integer(5000,6000)',
+        'name': 'iphone13'
+      }
+    ]
+  }))
+})
+
 app.listen('3000', () => {
   console.log('监听端口 3000')
 })

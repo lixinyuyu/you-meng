@@ -1,35 +1,8 @@
 <template>
   <div>
-    <panel
-    :title="title"
-    :iconLeft="icon1"
-    :color="color">
-      <template v-slot="left">
-      </template>
-      <template slot="center"></template>
-    </panel>
-    <!-- 具体的任务 -->
-    <div class="more-task">
-      <div class="every-task" v-for="(item,index) in taskList" :key="index">
-        <div class="icon">
-          <van-icon :name="item.icon[index]" size="20px"/>
-        </div>
-        <div class="title">
-          <div class="title-top title-style">
-            <span class="self-mr-right">{{item.title[index]}}</span>
-            <span style="color:orangered" class="fz12">+{{item.growUp}}成长值</span>
-          </div>
-          <div class="title-bottom title-style">
-            <span class="fz12">完成&nbsp;<span style="color:orangered">{{item.computed}}</span>/{{item.Action}}</span>
-          </div>
-        </div>
-        <div class="computed">
-          <span>去完成</span>
-        </div>
-      </div>
-    </div>
+    <taskCommon />
     <!-- 获取更多任务 -->
-    <panel>
+    <panel  @click.native="$router.push({name: 'Alltask'})">
       <div slot="center">
         <span class="orangered fz14">今日还可获取更多成长值&nbsp;<van-icon name="play-circle" style="top: 3px"/></span>
       </div>
@@ -38,29 +11,21 @@
 </template>
 <script>
 import panel from '@/components/panel/panel.vue'
-import { getTasks } from '@/api/task.js'
+import taskCommon from './task-common'
 export default {
   name: 'tasksDay',
   components: {
-    panel
+    panel,
+    taskCommon
   },
   data () {
     return {
-      icon1: 'label-o',
-      color: 'red',
-      title: '每日任务',
-      taskList: []
+      flag: false
     }
   },
   methods: {
-    loadTasks () {
-      getTasks().then(res => {
-        this.taskList = res.data.data
-      })
-    }
   },
   created () {
-    this.loadTasks()
   }
 }
 </script>

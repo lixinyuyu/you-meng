@@ -5,7 +5,7 @@
         <!-- <van-icon :name="iconLeft" :color="color"/> -->
       </slot>
     </div>
-    <div class="center" :style="{'text-align': textAlign}">
+    <div class="center" @click="handleClick" :style="{'text-align': textAlign}">
       <slot name="center">{{title}}</slot>
     </div>
     <div class="right" @click="handleClick" :style="{'text-align': textAlign}">

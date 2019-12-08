@@ -6,7 +6,7 @@
       @click-left="$router.back()"
     />
     <boxDiv>
-      <panel @click-right="handleClickRight" textAlign="right">
+      <panel  textAlign="right" @click-right="handleClickRight">
         <template slot="left">头像</template>
         <template slot="center">
           <img :src="userInfo.photo" class="imgSmall">
@@ -15,7 +15,7 @@
           <van-icon name="arrow" color="#393131" class="rightIcon"/>
         </template>
       </panel>
-      <panel @click-right="handleClickRight" textAlign="right">
+      <panel  textAlign="right">
         <template slot="left">昵称</template>
         <template slot="center">
           {{userInfo.name}}
@@ -24,7 +24,7 @@
           <van-icon name="arrow" color="#393131" class="rightIcon"/>
         </template>
       </panel>
-      <panel @click-right="handleClickRight" textAlign="right">
+      <panel  textAlign="right">
         <template slot="left">手机号</template>
         <template slot="center">
           {{userInfo.mobile}}
@@ -35,7 +35,7 @@
       </panel>
     </boxDiv>
     <boxDiv>
-      <panel @click-right="handleClickRight" textAlign="right">
+      <panel  textAlign="right">
         <template slot="left">性别</template>
         <template slot="center">
           <img :src="userInfo.photo" class="imgSmall">
@@ -44,7 +44,7 @@
           <van-icon name="arrow" color="#393131" class="rightIcon"/>
         </template>
       </panel>
-      <panel @click-right="handleClickRight" textAlign="right">
+      <panel  textAlign="right">
         <template slot="left">签名</template>
         <template slot="center">
           <img :src="userInfo.photo" class="imgSmall">
@@ -55,7 +55,7 @@
       </panel>
     </boxDiv>
     <boxDiv>
-      <panel @click-right="handleClickRight" textAlign="right">
+      <panel  textAlign="right">
         <template slot="left">地址管理</template>
         <template slot="center">
           <img :src="userInfo.photo" class="imgSmall">
@@ -65,21 +65,26 @@
         </template>
       </panel>
     </boxDiv>
+    <!-- 上传图片弹出 -->
+    <uploadEditPic v-model="isEditShow" :userInfo="userInfo"/>
   </div>
 </template>
 
 <script>
 import boxDiv from '@/components/boxDiv/boxDiv.vue'
 import panel from '@/components/panel/panel.vue'
+import uploadEditPic from './uploadEdit-pic'
 import { mapState } from 'vuex'
 export default {
   name: 'infoEdit',
   components: {
     boxDiv,
-    panel
+    panel,
+    uploadEditPic
   },
   data () {
     return {
+      isEditShow: false
     }
   },
   computed: {
@@ -89,7 +94,7 @@ export default {
   },
   methods: {
     handleClickRight () {
-      console.log(1)
+      this.isEditShow = true
     }
   }
 }

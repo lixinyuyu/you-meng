@@ -71,3 +71,15 @@ export const userData = (target) => {
     }
   })
 }
+
+// 编辑用户头像
+// export const editPhoto = (name, target) => {
+//   console.log(name, target)
+//   const formData = new FormData()
+//   formData.append(name, target)
+//   return request({
+//     method: 'PATCH',
+//     url: '/app/v1_0/user/photo',
+//     data: formData
+//   })
+// }

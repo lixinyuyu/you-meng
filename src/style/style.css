@@ -26,3 +26,9 @@ h6 {
 .orangered {
   color: orangered;
 }
+.imgSmall {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transform: translate(0px, 8px);
+}

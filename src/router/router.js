@@ -50,6 +50,10 @@ export default new Router({
       path: '/taskAll',
       name: 'Alltask',
       component: () => import('@/views/task/components/all-task.vue')
+    }, {
+      name: 'infoEdit',
+      path: '/infoEdit',
+      component: () => import('@/views/my/components/info-edit')
     }
   ]
 })

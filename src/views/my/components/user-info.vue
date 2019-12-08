@@ -21,7 +21,7 @@
         <div class="user-infos">
           <div>
             {{ userName }}
-            <van-icon name="edit" class="icon"/>
+            <van-icon name="edit" class="icon" color='#ccc' @click="$router.push({name: 'infoEdit'})"/>
           </div>
           <span style="font-size:12px;color:#ccc">{{userInfos.mobile}}</span>
           <span style="font-size:13px;color:#ccc">{{userInfos.birthday || '写签名更容易获得关注'}}</span>

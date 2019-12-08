@@ -1,10 +1,9 @@
 <template>
   <div>
     <panel
-    :title="title"
-    :iconLeft="icon1"
-    :color="color">
-      <template v-slot="left">
+    :title="title" textAlign="left">
+      <template slot="left">
+        <van-icon name="send-gift-o" color="red"/>
       </template>
       <template slot="center"></template>
     </panel>

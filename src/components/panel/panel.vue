@@ -2,13 +2,13 @@
   <div class="common-panel">
     <div class="left">
       <slot name="left">
-        <van-icon :name="iconLeft" :color="color"/>
+        <!-- <van-icon :name="iconLeft" :color="color"/> -->
       </slot>
     </div>
-    <div class="center">
+    <div class="center" :style="{'text-align': textAlign}">
       <slot name="center">{{title}}</slot>
     </div>
-    <div class="right">
+    <div class="right" @click="handleClick" :style="{'text-align': textAlign}">
       <slot name="right">
         <van-icon :name="iconRight" />
       </slot>
@@ -23,17 +23,13 @@ export default {
       type: String,
       default: ''
     },
-    iconLeft: {
-      type: String,
-      default: ''
-    },
     iconRight: {
       type: String,
       default: ''
     },
-    color: {
+    textAlign: {
       type: String,
-      default: ''
+      default: 'left'
     }
   },
   data () {
@@ -43,6 +39,9 @@ export default {
   created () {
   },
   methods: {
+    handleClick () {
+      this.$emit('click-right')
+    }
   }
 }
 </script>
@@ -58,12 +57,15 @@ export default {
   padding: 0 15px;
   z-index: 999;
   .left {
-    width: 10%;
+    width: 20%;
     margin-top: 1px;
   }
   .center {
-    width: 60%;
+    width: 70%;
     font-weight: 500;
+  }
+  .right {
+    width: 12%;
   }
 }
 </style>

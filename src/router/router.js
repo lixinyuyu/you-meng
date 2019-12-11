@@ -53,7 +53,7 @@ export default new Router({
     }, {
       name: 'infoEdit',
       path: '/infoEdit',
-      component: () => import('@/views/my/components/info-edit')
+      component: () => import('@/views/edit/index')
     }
   ]
 })

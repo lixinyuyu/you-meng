@@ -72,14 +72,19 @@ export const userData = (target) => {
   })
 }
 
-// 编辑用户头像
-// export const editPhoto = (name, target) => {
-//   console.log(name, target)
-//   const formData = new FormData()
-//   formData.append(name, target)
-//   return request({
-//     method: 'PATCH',
-//     url: '/app/v1_0/user/photo',
-//     data: formData
-//   })
-// }
+// 获取用户信息
+export const getMoreUser = () => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user'
+  })
+}
+
+// 编辑用户资料
+export const editUser = (target) => {
+  return request({
+    method: 'PATCH',
+    url: '/app/v1_0/user/profile',
+    data: target
+  })
+}

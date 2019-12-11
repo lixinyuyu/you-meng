@@ -32,3 +32,9 @@ h6 {
   border-radius: 50%;
   transform: translate(0px, 8px);
 }
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}

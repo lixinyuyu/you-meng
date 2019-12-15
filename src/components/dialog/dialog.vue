@@ -49,7 +49,8 @@ export default {
   data () {
     return {
       allowLength: 15,
-      content: null
+      content: null,
+      cacheData: null
     }
   },
   watch: {
@@ -62,6 +63,7 @@ export default {
     value: {
       handler (v) {
         this.content = v[this.title]
+        this.cacheData = Object.assign({}, v)
       },
       immediate: true
     }
@@ -69,10 +71,15 @@ export default {
   methods: {
     close () {
       this.$emit('update:isShow', false)
+      this.content = this.cacheData[this.title]
     },
     submit () {
       this.$emit('update:isShow', false)
-      console.log(this.content)
+      if (this.content === this.cacheData[this.title]) {
+        return
+      }
+      this.value[this.title] = this.content
+      this.cacheData = Object.assign({}, this.value)
       this.$emit('submit', this.content)
     }
   }

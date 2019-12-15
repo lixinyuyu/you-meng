@@ -55,7 +55,7 @@
       </panel>
     </boxDiv>
     <boxDiv>
-      <panel  textAlign="right">
+      <panel  textAlign="right" @click-right="handleAddress">
         <template slot="left">地址管理</template>
         <template slot="center">
           <img :src="userInfo.photo" class="imgSmall">
@@ -81,6 +81,7 @@ import boxDiv from '@/components/boxDiv/boxDiv.vue'
 import panel from '@/components/panel/panel.vue'
 import uploadEditPic from './components/uploadEdit-pic'
 import ymDialog from '@/components/dialog/dialog.vue'
+
 import { mapState, mapMutations } from 'vuex'
 import { editUser, getMoreUser } from '@/api/user'
 export default {
@@ -101,12 +102,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['userInfo'])
+    ...mapState(['userInfo', 'user'])
   },
   created () {
     this.getMoreinfo()
   },
   methods: {
+    ...mapMutations(['serUserInfo']),
     handleClickRight () {
       this.isEditShow = true
     },
@@ -117,7 +119,6 @@ export default {
       this.tempObj = this[info]
       this.isShow = true
     },
-    ...mapMutations(['serUserInfo']),
     async submitEdit (v) {
       var params = {}
       params[this.title] = v
@@ -128,6 +129,17 @@ export default {
     async getMoreinfo () {
       const data = await getMoreUser(this.userInfo.id)
       this.moreInfoList = data
+    },
+    handleAddress () {
+      if (this.user.token) {
+        this.$router.push({
+          name: 'addressEdit'
+        })
+      } else {
+        this.$router.push({
+          name: 'login'
+        })
+      }
     }
   }
 }

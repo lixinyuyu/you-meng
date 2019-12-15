@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import axios from 'axios'
 
 // 登录
 export const login = ({ mobile, code }) => {
@@ -86,5 +87,13 @@ export const editUser = (target) => {
     method: 'PATCH',
     url: '/app/v1_0/user/profile',
     data: target
+  })
+}
+
+// 用户地址
+export const userAddress = () => {
+  return axios({
+    method: 'GET',
+    url: 'http://localhost:3000/user/address'
   })
 }

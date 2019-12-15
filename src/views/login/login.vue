@@ -39,7 +39,7 @@ export default {
   data () {
     return {
       mobile: '',
-      code: '',
+      code: '246810',
       icon: true
     }
   },

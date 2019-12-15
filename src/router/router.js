@@ -54,6 +54,10 @@ export default new Router({
       name: 'infoEdit',
       path: '/infoEdit',
       component: () => import('@/views/edit/index')
+    }, {
+      name: 'addressEdit',
+      path: '/addressEdit',
+      component: () => import('@/views/edit/components/address-edit.vue')
     }
   ]
 })

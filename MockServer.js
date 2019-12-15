@@ -45,6 +45,13 @@ app.use('/phone/data', (req, res) => {
   }))
 })
 
+// 用户地址
+app.use('/user/address', (req, res) => {
+  res.json(Mock.mock({
+    'data': []
+  }))
+})
+
 app.listen('3000', () => {
   console.log('监听端口 3000')
 })

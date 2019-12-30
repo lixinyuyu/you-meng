@@ -1,6 +1,13 @@
 <template>
   <div>
-    <taskCommon />
+    <panel
+    :title="title" textAlign="left">
+      <template slot="left">
+        <van-icon name="send-gift-o" color="red"/>
+      </template>
+      <template slot="center"></template>
+    </panel>
+    <taskCommon :taskList="taskList"/>
     <!-- 获取更多任务 -->
     <panel  @click.native="$router.push({name: 'Alltask'})">
       <div slot="center">
@@ -10,6 +17,7 @@
   </div>
 </template>
 <script>
+import { getTasks } from '@/api/task.js'
 import panel from '@/components/panel/panel.vue'
 import taskCommon from './task-common'
 export default {
@@ -20,12 +28,22 @@ export default {
   },
   data () {
     return {
-      flag: false
+      flag: false,
+      taskList: [],
+      icon1: 'label-o',
+      color: 'red',
+      title: '每日任务'
     }
   },
   methods: {
+    loadTasks () {
+      getTasks().then(res => {
+        this.taskList = res.data.data
+      })
+    }
   },
   created () {
+    this.loadTasks()
   }
 }
 </script>

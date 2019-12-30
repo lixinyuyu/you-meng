@@ -58,6 +58,10 @@ export default new Router({
       name: 'addressEdit',
       path: '/addressEdit',
       component: () => import('@/views/edit/components/address-edit.vue')
+    }, {
+      name: 'addAddRess',
+      path: '/addAddRess',
+      component: () => import('@/components/address/add-Address.vue')
     }
   ]
 })

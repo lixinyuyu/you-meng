@@ -9,11 +9,15 @@ import '@/style/style.css'
 import svgIcon from 'vue2-svg-icon/Icon'
 import ElementUI from 'element-ui'
 import _ from 'lodash'
+import VueTouch from 'vue-touch'
 
 Vue.config.productionTip = false
 
 Vue.use(vant)
 Vue.use(ElementUI)
+Vue.use(VueTouch, {
+  name: 'v-touch'
+})
 Vue.component('svg-Icon', svgIcon)
 window._ = _
 new Vue({

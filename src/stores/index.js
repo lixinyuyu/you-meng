@@ -5,7 +5,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: auth.getUser('user'),
-    userInfo: auth.getUser('user_info')
+    userInfo: auth.getUser('user_info'),
+    address: auth.getUser('address')
   },
   mutations: {
     setUser (state, data) {
@@ -20,6 +21,11 @@ export default new Vuex.Store({
     serUserInfo (state, data) {
       state.userInfo = data
       auth.saveUser('user_info', state.userInfo)
+    },
+    setAddress (state, data) {
+      console.log(data)
+      state.address = data
+      auth.saveUser('address', state.address)
     }
   }
 })

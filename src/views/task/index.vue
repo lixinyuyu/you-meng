@@ -54,7 +54,7 @@ export default {
 <style lang="less">
 #tasks {
   .header {
-    background-color: #191616;
+    background-color: hsl(0, 6%, 9%);
     color: #fff;
     padding: 0 15px 10px 15px;
     .header-navbar {

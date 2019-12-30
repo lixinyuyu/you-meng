@@ -38,7 +38,7 @@
       <panel  textAlign="right">
         <template slot="left">性别</template>
         <template slot="center">
-          <img :src="userInfo.photo" class="imgSmall">
+          {{userInfo.gender ? '男': '女'}}
         </template>
         <template slot="right">
           <van-icon name="arrow" color="#393131" class="rightIcon"/>
@@ -57,9 +57,6 @@
     <boxDiv>
       <panel  textAlign="right" @click-right="handleAddress">
         <template slot="left">地址管理</template>
-        <template slot="center">
-          <img :src="userInfo.photo" class="imgSmall">
-        </template>
         <template slot="right">
           <van-icon name="arrow" color="#393131" class="rightIcon"/>
         </template>

@@ -11,15 +11,13 @@
         <span>还没有地址呢，添加一个吧😊</span>
       </div>
     </div>
-    <taskCommon :taskList="addressLists" :scroll="false">
-      <!-- 2222 -->
-      <!-- <div slot="top" >111111</div> -->
+    <taskCommon
+      :taskList="addressLists"
+      :scroll="false"
+      @handleRightDelete="handleRightDelete"
+      @handleRightEdit="handleRightEdit"
+    >
     </taskCommon>
-    <!-- <van-address-list
-      v-model="chosenAddressId"
-      :list="addressLists"
-      @add="$router.push({name: 'addAddRess'})"
-    /> -->
     <!-- 增加新地址 -->
     <van-button type="primary" size="large" class="btn" round @click="$router.push({name: 'addAddRess'})">+ 添加新地址</van-button>
   </div>
@@ -29,7 +27,8 @@
 // import showAddress from '@/components/address/show-address.vue'
 import taskCommon from '@/views/task/components/task-common'
 import { userAddress } from '@/api/user'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
+import { Dialog } from 'vant'
 export default {
   name: 'addressEdit',
   components: {
@@ -53,9 +52,35 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setAddress']),
     async loadAddressInfo () {
       const { data } = await userAddress()
       this.addRessList = data.data
+    },
+    handleRightDelete (row, index) {
+      Dialog.confirm({
+        title: '提示',
+        message: '确认删除吗'
+      }).then(() => {
+        this.address.splice(index, 1)
+        this.setAddress(this.address)
+        this.$toast.success('删除成功')
+        /*
+        bug残留
+        说明：删除之后下一项按钮自动展开
+        todos
+        */
+      }).catch(() => {
+        // on cancel
+      })
+    },
+    handleRightEdit (row, index) {
+      this.$router.push({
+        name: 'addAddRess',
+        params: {
+          id: index
+        }
+      })
     }
   }
 }
@@ -83,11 +108,10 @@ export default {
   }
   .btn {
     position: absolute;
-    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
-    margin: 0 auto;
+    margin: 20px auto 30px auto;
   }
 }
 </style>

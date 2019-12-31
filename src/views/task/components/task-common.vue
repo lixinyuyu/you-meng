@@ -49,11 +49,11 @@
         </div>
         <div v-if="item.address && isMove=== index">
           <span :ref="'editBtn' + index">
-            <span class="edit">
-              <van-icon name="edit" v-if="item.address"/>
+            <span class="edit" @click="handleRightEdit(item, index)">
+              <van-icon name="edit" v-if="item.address" size="20"/>
             </span>
-            <span class="ad-delete">
-              <van-icon name="edit" v-if="item.address"/>
+            <span class="ad-delete" @click="handleRightDelete(item, index)">
+              <van-icon name="delete" v-if="item.address" size="20"/>
             </span>
           </span>
         </div>
@@ -149,6 +149,12 @@ export default {
           this.swipe = 'transform:translateX(' + this.swipeWd + 'px)'
         }
       }
+    },
+    handleRightDelete (row, index) {
+      this.$emit('handleRightDelete', row, index)
+    },
+    handleRightEdit (row, index) {
+      this.$emit('handleRightEdit', row, index)
     }
   },
   created () {

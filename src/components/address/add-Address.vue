@@ -12,6 +12,7 @@
       show-set-default
       show-search-result
       :search-result="searchResult"
+      :addressInfo="addressInfo"
       :area-columns-placeholder="['请选择', '请选择', '请选择']"
       @save="onSave"
       @delete="onDelete"
@@ -28,19 +29,30 @@ export default {
     return {
       areaList,
       searchResult: [],
-      addressList: []
+      addressList: [],
+      addressInfo: {}
     }
   },
   computed: {
-    ...mapState(['address'])
+    ...mapState(['address']),
+    id () {
+      return this.$route.params.id
+    }
   },
   created () {
     this.addressList = this.address ? this.address : []
   },
+  mounted () {
+    this.addressInfo = this.address[this.id]
+  },
   methods: {
     ...mapMutations(['setAddress']),
     onSave (content) {
-      this.addressList.push(content)
+      if (this.addressInfo) {
+        this.addressList.splice(this.id, 1, content)
+      } else {
+        this.addressList.unshift(content)
+      }
       this.setAddress(this.addressList)
       this.$toast('保存成功')
       this.$router.back()

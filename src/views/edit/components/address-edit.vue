@@ -109,9 +109,10 @@ export default {
   .btn {
     position: absolute;
     left: 50%;
+    bottom: 30px;
     transform: translateX(-50%);
     width: 80%;
-    margin: 20px auto 30px auto;
+    margin: 20px auto;
   }
 }
 </style>

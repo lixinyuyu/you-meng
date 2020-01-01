@@ -21,7 +21,7 @@
               icon-size="12"
               checked-color="#76e0e3"
               v-model="radio"
-              @click="radioChange = radio"
+              @click="radioChange = radio = radioChange === radio ? !radio : radio"
               ></van-radio>
           </slot>
         </div>
@@ -165,8 +165,8 @@ export default {
 <style lang="less">
   .wrap {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: 80%;
+    overflow: auto;
   }
   .more-task {
     height: 350px;
@@ -176,9 +176,6 @@ export default {
     border-bottom: 1px solid #f4f1f1;
   }
   .no-task {
-    border-top: 1px solid #f4f1f1;
-    border-bottom: 1px solid #f4f1f1;
-  }
     .every-task {
       position: relative;
       width: 100%;
@@ -200,6 +197,8 @@ export default {
         line-height:30px;
       }
       .computed {
+        position: absolute;
+        right: 50px;
         width: 20%;
         text-align: center;
         margin-left: -30px;
@@ -236,4 +235,5 @@ export default {
   left: 50%;
   transform: translateX(-50%);
 }
+  }
 </style>

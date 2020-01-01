@@ -9,7 +9,7 @@
             <van-icon name="success" class="icon" size="26px" color="orange" @click="submit"/>
           </div>
           <div class="center">
-            <textarea type="text" v-model="content"></textarea>
+            <textarea type="text" v-model="content" class="self-textarea"></textarea>
           </div>
           <div class="bottom">
             <span style="color:rgb(136, 130, 130)">普通用户一个月修改一次{{title}}，请谨慎提交</span>
@@ -121,12 +121,6 @@ export default {
     .center {
       height: 68px;
       font-size: 14px;
-      textarea {
-        outline: 0;
-        border: none;
-        width: 100%;
-        height: 100%;
-      }
     }
     .bottom {
       font-size: 12px;

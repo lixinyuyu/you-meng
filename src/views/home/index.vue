@@ -19,7 +19,7 @@
     <!-- 轮播图部分 -->
     <swiper/>
     <!-- 用户关注的频道列表部分 -->
-    <userChannel />
+    <userChannel :userInfo="userInfo"/>
     <!-- layout部分 -->
     <layout />
   </div>

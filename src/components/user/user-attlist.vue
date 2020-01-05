@@ -5,49 +5,65 @@
 
 <template>
   <div class="userAttlist">
-    <div class="user-wrapper">
-      <div class="user-top">
-        <div class="avator">
-          <img :src="userInfo.photo" class="imgSmall"/>
+    <div v-for="(item, index) in articleList"
+      :key="index"
+      @click="handleShowAll(item)"
+      >
+      <div class="user-wrapper"
+      >
+        <div class="user-top">
+          <div class="avator">
+            <img :src="userInfo.photo" class="imgSmall"/>
+          </div>
+          <div class="infos">
+            <span>{{item.aut_name}}</span>
+            <span class="grey">{{item.art_id}}</span>
+          </div>
+          <div class="attr">
+            <van-button round type="info" size="small" color="black">{{item.is_liking ? '已关注':'未关注'}}</van-button>
+          </div>
         </div>
-        <div class="infos">
-          <span>{{articleInfos.aut_name}}</span>
-          <span class="grey">{{articleInfos.art_id}}</span>
+        <div class="user-center">
+          <span>{{item.title}}</span>
         </div>
-        <div class="attr">
-          <van-button round type="info" size="small" color="black">{{isAttr}}</van-button>
+        <div class="user-bottom">
+          <van-grid :border="false" :column-num="coverImage">
+            <van-grid-item v-for="images in item.cover.images" :key="images">
+              <van-image :src="images" />
+            </van-grid-item>
+          </van-grid>
         </div>
+        <div class="art-text">
+          <div class="time">
+            <span>{{item.pubdate}}</span>
+          </div>
+          <div class="attribute">
+            <van-icon name="like" size="14" /> &nbsp; <span class="self-lr-right">{{item.like_count}}</span>
+            <van-icon name="chat" size="14"/> &nbsp; {{item.comm_count}}
+          </div>
+        </div>
+        <slot name="art-comment">
+            <!-- 评论组件 -->
+          <comment :commList="commList"/>
+        </slot>
       </div>
-      <div class="user-center">
-        <span>{{articleInfos.title}}</span>
-      </div>
-      <div class="user-bottom">
-        <van-grid :border="false" :column-num="coverImage">
-          <van-grid-item v-for="item in articleInfos.cover.images" :key="item">
-            <van-image :src="item" />
-          </van-grid-item>
-        </van-grid>
-      </div>
-      <div class="art-text">
-        <div class="time">
-          <span class="grey">{{articleInfos.pubdate}}</span>
-        </div>
-        <div class="attribute">
-          <van-icon name="like" size="14" /> &nbsp; <span class="self-lr-right">{{articleInfos.like_count}}</span>
-          <van-icon name="chat" size="14"/> &nbsp; {{articleInfos.comm_count}}
-        </div>
-      </div>
+      <slot name="bottom-border">
+        <div class="border"></div>
+      </slot>
     </div>
   </div>
 </template>
 
 <script>
+import comment from '@/components/comment/comment'
+import { getComment } from '@/api/articles'
+
 export default {
   name: 'userAttlist',
   props: {
-    articleInfos: {
-      type: Object,
-      default: () => {}
+    articleList: {
+      type: Array,
+      default: () => []
     },
     userInfo: {
       type: Object,
@@ -56,23 +72,54 @@ export default {
     isUserSelf: {
       type: Boolean,
       default: false
+    },
+    source: {
+      type: [Number, String],
+      default: ''
+    },
+    isArticle: {
+      type: Boolean,
+      default: true
     }
+  },
+  components: {
+    comment
   },
   data () {
     return {
+      offset: null,
+      limit: 10,
+      commList: []
     }
   },
   computed: {
-    isAttr () {
-      return this.articleInfos.is_liking ? '已关注' : '去关注'
-    },
     coverImage () {
       return this.isUserSelf ? 1 : 3
     }
   },
   created () {
+    this.loadComment()
   },
   methods: {
+    loadComment () {
+      getComment({
+        source: this.source, // 文章id或者评论id
+        offset: this.offset,
+        limit: this.limit,
+        isArticle: this.isArticle
+      }).then(body => {
+        console.log('bo', body)
+        this.commList = body.results
+      })
+    },
+    handleShowAll (item) {
+      this.$router.push({
+        name: 'showAllArticle',
+        params: {
+          art_id: item.art_id
+        }
+      })
+    }
   }
 }
 </script>
@@ -102,5 +149,10 @@ export default {
     margin-top: 8px;
     font-size: 12px;
   }
+}
+.border {
+  height: 6px;
+  margin: 10px 0;
+  background-color: #f8f8f8;
 }
 </style>

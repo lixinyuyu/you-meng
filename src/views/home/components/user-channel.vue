@@ -6,10 +6,10 @@
       :key="index"
       :title="item.name"
       >
-        <user-attlist v-for="(item, index) in articleList"
-        :key="index"
-        :articleInfos="item"
+        <user-attlist
+        :articleList="articleList"
         :userInfo="userInfo"
+        :source = "141314"
         ></user-attlist>
       </van-tab>
     </van-tabs>
@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { userChannel, userArtList } from '@/api/user'
+import { userChannel } from '@/api/user'
+import { userArtList } from '@/api/articles'
 import userAttlist from '@/components/user/user-attlist'
 export default {
   props: {

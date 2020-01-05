@@ -97,12 +97,3 @@ export const userAddress = () => {
     url: 'http://localhost:3000/user/address'
   })
 }
-
-// 用户文章列表
-export const userArtList = (params) => {
-  return request({
-    method: 'GET',
-    url: '/app/v1_0/user/histories',
-    params
-  })
-}

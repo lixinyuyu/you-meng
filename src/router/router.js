@@ -62,6 +62,10 @@ export default new Router({
       name: 'addAddRess',
       path: '/addAddRess',
       component: () => import('@/components/address/add-Address.vue')
+    }, {
+      name: 'showAllArticle',
+      path: '/showAllArticle/:art_id',
+      component: () => import('@/views/article/article')
     }
   ]
 })

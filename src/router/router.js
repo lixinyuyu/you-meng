@@ -11,7 +11,10 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/home')
+      component: () => import('@/views/home'),
+      meta: {
+        isKeepAlive: true
+      }
     }, {
       path: '/first',
       name: 'first',

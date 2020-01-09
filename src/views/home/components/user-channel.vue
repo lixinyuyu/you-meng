@@ -35,7 +35,7 @@ export default {
       active: 0,
       userChannels: {},
       articleList: [],
-      page: 1
+      scrollTop: 0
     }
   },
   methods: {
@@ -49,13 +49,22 @@ export default {
         this.articleList = body.results
       })
     },
-    handleChange () {
-      console.log('c')
+    handleScroll () {
+      this.scrollTop = document.documentElement.scrollTop
     }
   },
   created () {
     this.loadChannels()
     this.loadUserArtList()
+  },
+  activated () {
+    window.addEventListener('scroll', this.handleScroll)
+    // keep-alive中进入页面的时候触发
+    // this.$route.meta.isKeepAlive = false
+    document.documentElement.scrollTop = this.scrollTop
+  },
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>

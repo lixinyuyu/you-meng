@@ -34,11 +34,9 @@ export const userArtList = (params) => {
 export const getDetailArt = ({
   articleId
 }) => {
+  console.log(articleId)
   return request({
     method: 'GET',
-    url: '/app/v1_0/articles/',
-    params: {
-      article_id: articleId
-    }
+    url: `/app/v1_0/articles/${articleId}`
   })
 }

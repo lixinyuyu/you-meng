@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-tabs v-model="active" swipeable sticky :offset-top="39" @change="handleChange" style="margin-bottom:45px">
+    <van-tabs v-model="active" swipeable sticky :offset-top="39" style="margin-bottom:45px">
       <van-tab
       v-for="(item, index) in userChannels"
       :key="index"

@@ -9,27 +9,37 @@
         @click-left="onClickLeft"
         @click-right="onClickRight"
       />
-      <commentList />
+      <userAttlist
+      :articleList="[...artInfos]"
+      :userInfo="userInfo"
+      :source="141314"
+      class="article">
+       <div slot="art-comment"></div>
+       <div slot="bottom-border"></div>
+      </userAttlist>
+      <!-- <commentList /> -->
     </div>
   </div>
 </template>
 
 <script>
 import { getDetailArt } from '@/api/articles'
-import commentList from './components/commentList'
+import { mapState } from 'vuex'
+// import commentList from './components/commentList'
+import userAttlist from '@/components/user/user-attlist'
 export default {
   name: 'showAllArticle',
   data () {
     return {
-      artInfos: null,
-      isShow: false,
-      index: null
+      artInfos: null
     }
   },
   components: {
-    commentList
+    // commentList,
+    userAttlist
   },
   computed: {
+    ...mapState(['userInfo']),
     articleId () {
       return this.$route.params.art_id
     }
@@ -55,4 +65,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+.article {
+  padding: 0 15px;
+}
 </style>

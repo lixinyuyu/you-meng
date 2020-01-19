@@ -11,7 +11,8 @@
       >
       <div class="user-wrapper"
       >
-        <div class="user-top">
+        <slot name="user-avator">
+          <div class="user-top">
           <div class="avator">
             <img :src="userInfo.photo" class="imgSmall"/>
           </div>
@@ -20,22 +21,30 @@
             <span class="grey">{{item.art_id}}</span>
           </div>
           <div class="attr">
-            <van-button round type="info" size="small" color="black">{{item.is_liking ? '已关注':'未关注'}}</van-button>
+            <van-button
+            round type="info"
+            size="small"
+            :color="isAttribute(item)"
+            @click="handleCancelUser(item.aut_id, item)"
+            >{{item.is_liking || item.is_followed? '取消关注':'关注'}}</van-button>
           </div>
         </div>
+        </slot>
         <div class="user-center">
           <span>{{item.title}}</span>
         </div>
-        <div class="user-bottom">
-          <van-grid :border="false" :column-num="coverImage">
-            <van-grid-item v-for="images in item.cover.images" :key="images">
-              <van-image :src="images" />
-            </van-grid-item>
-          </van-grid>
-        </div>
+        <slot name="pic">
+          <div class="user-bottom">
+            <van-grid :border="false" :column-num="coverImage" v-if="item.cover">
+              <van-grid-item v-for="images in item.cover.images" :key="images">
+                <van-image :src="images" />
+              </van-grid-item>
+            </van-grid>
+          </div>
+        </slot>
         <div class="art-text">
           <div class="time">
-            <span>{{item.pubdate}}</span>
+            <span>{{item.pubdate | dateformat('YYYY-MM-DD HH:mm:ss')}}</span>
           </div>
           <div class="attribute">
             <van-icon name="like" size="14" /> &nbsp; <span class="self-lr-right">{{item.like_count}}</span>
@@ -57,6 +66,7 @@
 <script>
 import comment from '@/components/comment/comment'
 import { getComment } from '@/api/articles'
+import { cancelUserAttribute, AttributeUser } from '@/api/user'
 
 export default {
   name: 'userAttlist',
@@ -119,6 +129,25 @@ export default {
           art_id: item.art_id
         }
       })
+    },
+    isAttribute (item) {
+      return item.is_followed ? 'grey' : 'black'
+    },
+    // 取消关注用户
+    handleCancelUser (id, item) {
+      // 得在这里判断用户当前是否关注了
+      // 如果关注了就取消，否则反之
+      if (item.is_followed) {
+        // 说明当前关注了，想取消关注
+        cancelUserAttribute(id).then(body => {
+          item.is_followed = false
+        })
+      } else {
+        // 说明当前没关注，想要关注
+        AttributeUser({ target: id }).then(body => {
+          item.is_followed = true
+        })
+      }
     }
   }
 }
